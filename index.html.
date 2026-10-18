@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff5f8">
+  <title>Four Months of Us ♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #603447;
+      background: #fff5f8;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .page {
+      width: min(100% - 28px, 720px);
+      margin: auto;
+      padding-bottom: 45px;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      padding: 22px 0;
+      color: #b16b85;
+      font: 11px Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 5px 75px;
+    }
+
+    .eyebrow {
+      color: #c0527b;
+      font: bold 11px Arial, sans-serif;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(48px, 12vw, 86px);
+      font-weight: normal;
+      line-height: 1;
+      letter-spacing: -3px;
+      margin: 25px 0;
+    }
+
+    h1 span {
+      display: block;
+      color: #d75d88;
+      font-style: italic;
+    }
+
+    .subtitle {
+      max-width: 410px;
+      margin: auto;
+      font: 15px/1.9 Arial, sans-serif;
+      color: #966b7c;
+    }
+
+    .date {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 17px;
+      border: 1px solid #f0c5d5;
+      border-radius: 30px;
+      color: #bd527b;
+      font: 12px Arial, sans-serif;
+    }
+
+    .section {
+      margin: 25px 0 55px;
+    }
+
+    .heading {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .heading h2 {
+      font-size: clamp(28px, 7vw, 40px);
+      font-weight: normal;
+      margin: 12px 0;
+    }
+
+    .heading p {
+      font: 13px Arial, sans-serif;
+      color: #a47788;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      text-align: left;
+      padding: 20px 15px;
+      min-height: 165px;
+      background: #fff;
+      color: #603447;
+      border: 1px solid #f2d0dc;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px #b65b7b0d;
+      transition: transform .2s;
+    }
+
+    .card:active {
+      transform: scale(.98);
+    }
+
+    .emoji {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 14px;
+    }
+
+    .card strong {
+      display: block;
+      font-size: 19px;
+      font-weight: normal;
+    }
+
+    .hint {
+      display: block;
+      margin-top: 7px;
+      color: #b18495;
+      font: 11px Arial, sans-serif;
+    }
+
+    .reveal {
+      display: none;
+      margin-top: 13px;
+      font: 13px/1.8 Arial, sans-serif;
+      color: #80566a;
+    }
+
+    .card.open {
+      background: #ffedf3;
+      border-color: #e9a7be;
+    }
+
+    .card.open .reveal {
+      display: block;
+    }
+
+    .card.open .hint {
+      display: none;
+    }
+
+    .letter {
+      padding: clamp(23px, 6vw, 42px);
+      background: white;
+      border: 1px solid #f0ccda;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px #b65b7b12;
+    }
+
+    .letter h2 {
+      font-size: clamp(29px, 7vw, 42px);
+      font-weight: normal;
+      margin: 12px 0 25px;
+    }
+
+    .letter p {
+      font: 14px/2 Arial, sans-serif;
+      color: #795567;
+      margin: 0 0 17px;
+    }
+
+    .signature {
+      color: #c0527b !important;
+      font: italic 23px Georgia, serif !important;
+      margin-top: 25px !important;
+    }
+
+    .surprise {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .main-button {
+      padding: 14px 22px;
+      color: white;
+      background: #c94f7b;
+      border: none;
+      border-radius: 30px;
+      box-shadow: 0 8px 20px #c94f7b30;
+      font: 13px Arial, sans-serif;
+      transition: transform .2s;
+    }
+
+    .main-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .secret {
+      display: none;
+      margin: 22px auto 0;
+      padding: 22px;
+      max-width: 520px;
+      background: white;
+      border: 1px dashed #e6a2b9;
+      border-radius: 20px;
+      font: 14px/2 Arial, sans-serif;
+      animation: appear .35s ease;
+    }
+
+    .secret.show {
+      display: block;
+    }
+
+    .promise {
+      display: grid;
+      gap: 10px;
+      font: 13px/1.7 Arial, sans-serif;
+    }
+
+    .promise div {
+      background: white;
+      padding: 15px;
+      border: 1px solid #f0ccda;
+      border-radius: 14px;
+    }
+
+    .promise span {
+      color: #ce5a84;
+      margin-right: 8px;
+    }
+
+    .ending {
+      text-align: center;
+      padding: 45px 5px 10px;
+    }
+
+    .big-heart {
+      color: #d75d88;
+      font-size: 43px;
+      animation: heartbeat 1.5s infinite;
+      display: inline-block;
+    }
+
+    .ending h2 {
+      font-size: clamp(34px, 8vw, 48px);
+      font-weight: normal;
+      margin: 12px 0;
+    }
+
+    .ending p {
+      max-width: 400px;
+      margin: 0 auto 25px;
+      color: #a47788;
+      font: 13px/1.9 Arial, sans-serif;
+    }
+
+    footer {
+      color: #b18495;
+      font: 10px Arial, sans-serif;
+      letter-spacing: 1px;
+      margin-top: 30px;
+    }
+
+    .floating {
+      position: fixed;
+      pointer-events: none;
+      z-index: 5;
+      animation: floatUp 1.5s ease-out forwards;
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.15); }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-130px) rotate(20deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        width: calc(100% - 22px);
+      }
+
+      .card {
+        padding: 16px 12px;
+        min-height: 155px;
+      }
+
+      .card strong {
+        font-size: 17px;
+      }
+
+      .top {
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="top">
+      <span>our little corner</span>
+      <span>♡</span>
+      <span>just us</span>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow">a tiny celebration of us</div>
+
+      <h1>
+        four months
+        <span>of us.</span>
+      </h1>
+
+      <p class="subtitle">
+        Four months since my favourite person became my person.
+        And somehow, you're still my favourite notification. ♡
+      </p>
+
+      <div class="date">19 June — 19 October ♡</div>
+    </header>
+
+    <section class="section">
+      <div class="heading">
+        <div class="eyebrow">tap each little card</div>
+        <h2>Things that are so you</h2>
+        <p>Little things I don't think you realise I love.</p>
+      </div>
+
+      <div class="cards">
+
+        <button class="card" type="button" aria-expanded="false">
+          <span class="emoji">🌙</span>
+          <strong>My safe place</strong>
+          <span class="hint">tap to open ♡</span>
+          <span class="reveal">
+            It's not a place, buddy. It's that calm feeling I get
+            when it's you. Even an ordinary day feels softer.
+          </span>
+        </button>
+
+        <button class="card" type="button" aria-expanded="false">
+          <span class="emoji">👀</span>
+          <strong>Those eyes</strong>
+          <span class="hint">tap to open ♡</span>
+          <span class="reveal">
+            I'm trying to be normal about your eyes.
+            I'm failing. That's the whole message. 😭
+          </span>
+        </button>
+
+        <button class="card" type="button" aria-expanded="false">
+          <span class="emoji">🎶</span>
+          <strong>Your little things</strong>
+          <span class="hint">tap to open ♡</span>
+          <span class="reveal">
+            Your smile, your voice, your random words, and the way
+            one tiny moment with you can stay in my head all day.
+          </span>
+        </button>
+
+        <button class="card" type="button" aria-expanded="false">
+          <span class="emoji">🫶</span>
+          <strong>My favourite choice</strong>
+          <span class="hint">tap to open ♡</span>
+          <span class="reveal">
+            Not because we're perfect, but because what we have
+            matters to me. I want us to keep choosing kindness,
+            honesty, and each other.
+          </span>
+        </button>
+
+      </div>
+    </section>
+
+    <section class="section letter">
+      <div class="eyebrow">from your kanojo ♡</div>
+      <h2>Okay, listen, buddy.</h2>
+
+      <p>
+        Four months. 🥹 It still feels a little unreal that the
+        boy I've known for so long is now the boy I get to call mine.
+      </p>
+
+      <p>
+        I don't need every day to be perfect, and I don't expect us
+        to always know the right thing to say. I just want us to be
+        real with each other. To talk when something feels off, to
+        listen even when it's difficult, and to never make each other
+        guess whether we're cared for.
+      </p>
+
+      <p>
+        You mean a lot to me, Adii. Not just the cute, romantic parts.
+        I care about your dreams, your worries, your silly side, and
+        the person you're becoming. I hope you always remember that
+        you don't have to be perfect to be loved or worthy of good things.
+      </p>
+
+      <p>
+        And yes, you sometimes make me angry. Very much.
+        Unfortunately for me, you're also my favourite. 🙄💗
+      </p>
+
+      <p class="signature">happy four months, meri jaan.</p>
+    </section>
+
+    <section class="section surprise">
+      <div class="heading">
+        <div class="eyebrow">psst… one more thing</div>
+        <h2>A tiny secret for you</h2>
+        <p>This message is hiding just for you.</p>
+      </div>
+
+      <button
+        class="main-button"
+        id="secretButton"
+        type="button"
+        aria-expanded="false"
+        aria-controls="secretMessage">
+        open your little surprise ♡
+      </button>
+
+      <div class="secret" id="secretMessage" aria-live="polite">
+        <strong>Adnan, my buddy—</strong><br><br>
+
+        If I could go back to the beginning, knowing everything I
+        know now, I'd still want to know you. I'd still want the
+        friendship, the laughter, the getting-to-know-you, and the
+        chance to love you in my own little way.
+
+        No grand promise about being perfect. Just this:
+        you matter to me, and I'm glad it's you.
+
+        <br><br>
+        <em>— your kanojo, always cheering for you ♡</em>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="heading">
+        <div class="eyebrow">four months in</div>
+        <h2>Things I hope we keep</h2>
+      </div>
+
+      <div class="promise">
+        <div><span>♡</span> Tell each other the truth, gently.</div>
+        <div><span>♡</span> Make space for school, dreams, family, and ourselves.</div>
+        <div><span>♡</span> Keep laughing at the dumbest things.</div>
+        <div><span>♡</span> Remember we're on the same team.</div>
+      </div>
+    </section>
+
+    <section class="ending">
+      <span class="big-heart">♥</span>
+      <h2>That's my boy.</h2>
+
+      <p>
+        Four months down. More memories to make, more things to learn
+        about each other, and more reasons to smile at my phone like
+        an idiot.
+      </p>
+
+      <button class="main-button" id="loveButton" type="button">
+        tap for a little love ✨
+      </button>
+
+      <footer>made with a whole lot of love · 19.10.2026</footer>
+    </section>
+
+  </main>
+
+  <script>
+    "use strict";
+
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("click", function () {
+        var isOpen = card.getAttribute("aria-expanded") === "true";
+
+        card.setAttribute("aria-expanded", String(!isOpen));
+        card.classList.toggle("open", !isOpen);
+      });
+    });
+
+    var secretButton = document.getElementById("secretButton");
+    var secretMessage = document.getElementById("secretMessage");
+
+    secretButton.addEventListener("click", function () {
+      var isOpen = secretButton.getAttribute("aria-expanded") === "true";
+
+      secretButton.setAttribute("aria-expanded", String(!isOpen));
+      secretMessage.classList.toggle("show", !isOpen);
+
+      secretButton.textContent = isOpen
+        ? "open your little surprise ♡"
+        : "you found it, cutie ♡";
+
+      if (!isOpen) {
+        secretMessage.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    });
+
+    document.getElementById("loveButton").addEventListener(
+      "click",
+      function () {
+        this.textContent = "love you lots, buddy ♡";
+
+        var symbols = ["♡", "♥", "✦", "💕"];
+        var colors = ["#e96f96", "#c84c78", "#d8a85c"];
+
+        for (var i = 0; i < 14; i++) {
+          var heart = document.createElement("span");
+
+          heart.className = "floating";
+          heart.textContent = symbols[i % symbols.length];
+          heart.style.left = (5 + Math.random() * 90) + "vw";
+          heart.style.top = (45 + Math.random() * 45) + "vh";
+          heart.style.color = colors[i % colors.length];
+          heart.style.fontSize = (16 + Math.random() * 15) + "px";
+
+          document.body.appendChild(heart);
+
+          window.setTimeout(function (node) {
+            node.remove();
+          }, 1600, heart);
+        }
+      }
+    );
+  </script>
+</body>
+</html>
